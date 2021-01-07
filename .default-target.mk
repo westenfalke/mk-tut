@@ -1,9 +1,7 @@
 # .default-target.mk
 README.md :
-	$(CAT)  01-showcase.md $(PIPE-TEE-A-TO-TARGET)
-	-/usr/bin/bash 02-showcase.bash $(PIPE-TEE-A-TO-TARGET)
-	$(CAT)  03-showcase.md $(PIPE-TEE-A-TO-TARGET)
+	(RECIPE_SHOWCASE_PART_01)
+	(RECIPE_SHOWCASE_PART_02)
+	(RECIPE_SHOWCASE_PART_03)
 
 .DEFAULT_GOAL := README.md
-
-
