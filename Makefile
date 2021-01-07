@@ -17,8 +17,10 @@ README.md :
 #.DEFAULT_GOAL := all
 
 $(CHAPTERS) $(APPENDIX): 
+	@$(ECHO) $@: START
 	$(MAKE)	--directory=$@ $(TARGET)
 	$(if $(TARGET), $(MAKE) $(TARGET))
+	@$(ECHO) $@: OK
 
 .PHONY : mk-update
 mk-update :
