@@ -1,7 +1,7 @@
 # VAR
 ABS_PROJECT_DIR         = /home/westenfalke/GNU-Make/CAHTFC
-CHAPTERS                = dependencies themes examplesite tepmlates archetypes content 
-APPENDIX                = readme appendix _index
+CHAPTERS                = readme 
+APPENDIX                = index
 OUTPUT_DIR              = out
 OUTPUT_FILE             = README.md
 PHONY_TARGETS           = .phony-targets.mk
