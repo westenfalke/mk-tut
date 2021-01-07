@@ -7,26 +7,18 @@ include $(REL_PROJECT_DIR)/.common.mk
 
 .PHONY: all 
 all : 
-	$(MAKE) TARGET=$@ $(CHAPTERS) $(APPENDIX)
+	#$(MAKE) TARGET=$@ $(CHAPTERS) $(APPENDIX)
 	echo Done and dustes!  | tee -a $(OUTPUT_FILE)
 
-README.md :
-	TRUNCATE-ZERO-CREATE $@ 
-	echo ## $@ | tee -a $(OUTPUT_FILE)
+README.md : 
+	#TRUNCATE-ZERO-CREATE $@ 
+	$(ECHO) $@ ' - 'OK :
 
 #.DEFAULT_GOAL := all
 
 $(CHAPTERS) $(APENDIX) : 
 	$(MAKE)	--directory=$@ $(TARGET)
 	$(if $(TARGET), $(MAKE) $(TARGET))
-
-# default-target.mk (witouth help @see default-help.mk)
-
-# Perform all tasks to build the application
-.PHONY : all
-all : 
-	$(MAKE) TARGET=$@ $(CHAPTERS) $(APPENDIX)
-	echo $@ For One And One For $@
 
 .PHONY : mk-update
 mk-update :
