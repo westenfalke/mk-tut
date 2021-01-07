@@ -16,9 +16,19 @@ mk-update : $(CHAPTERS) $(APPENDIX)
 	@$(ECHO)
 
 $(CHAPTERS) $(APPENDIX):
-	@[ -f $@.mk ] || $(ECHO) $@.mk : initializing with standard phony targets
-	@[ -f $@.mk ] || $(CAT) $(PHONY_TARGETS)                  >> $@.mk
-	@[ -d $@    ] || $(MKDIR-P) -v                               $@
+	@-[ -f $@/Makefile ] || $(MOVE--VERBOSE--BACKUP-N) $@.mk $@.mk.ORI
+	@[ -f $@/Makefile ] || $(ECHO) $@.mk : adding phony targets
+	@[ -f $@/Makefile ] || $(CAT) $(PHONY_TARGETS)                  >> $@.mk
+	@[ -f $@/Makefile ] || $(ECHO) $@.mk : adding default target
+	@[ -f $@/Makefile ] || $(CAT) $(DEFAULT_TARGET)                 >> $@.mk
+	@[ -f $@/Makefile ] || $(ECHO) $@.mk : adding help target
+	@[ -f $@/Makefile ] || $(CAT) $(HELP_TARGET)                    >> $@.mk
+	@[ -f $@/Makefile ] || $(ECHO) $@ : creating folder for custom data 
+	@[ -f $@/Makefile ] || $(MKDIR-P) -v                               $@
+	@[ -f $@/Makefile ] || $(ECHO) $@ : adding default showcase files
+	@[ -f $@/Makefile ] || $(TOUCH) $@/01-showcase.md 
+	@[ -f $@/Makefile ] || $(TOUCH) $@/02-showcase.bash
+	@[ -f $@/Makefile ] || $(TOUCH) $@/03-showcase.md 
 	@$(TRUNCATE-ZERO-CREATE)                                     $@/Makefile
 	@$(ECHO) $@/Makefile : updateing meta data and heeader information
 	@$(ECHO) # Makefile automatic HEADER                      >> $@/Makefile
@@ -28,8 +38,6 @@ $(CHAPTERS) $(APPENDIX):
 	@$(ECHO) OUTPUT_DIR = ../$(OUTPUT_DIR)                    >> $@/Makefile
 	@[ -f $@.mk ] && $(ECHO) $@/Makefile : updating customized $@.mk targets
 	@[ -f $@.mk ] && $(CAT) $@.mk                             >> $@/Makefile
-	@[ -f $@.mk ] && $(ECHO) $@/Makefile : adding default help targets
-	@[ -f $@.mk ] && $(CAT) $(DEFAULT_HELP_TARGET)           >> $@/Makefile
 
 .PHONY : mk-clean
 mk-clean :
