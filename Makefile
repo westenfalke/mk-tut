@@ -5,18 +5,18 @@ OUTPUT_DIR = ./out
 
 include $(REL_PROJECT_DIR)/.common.mk
 
-.PHONY: all 
-all : 
-	#$(MAKE) TARGET=$@ $(CHAPTERS) $(APPENDIX)
-	echo Done and dustes!  | tee -a $(OUTPUT_FILE)
+.PHONY: all README.md $(CHAPTERS) $(APPENDIX)
+all : README.md $(CHAPTERS) $(APPENDIX)
+	#$(ECHO) $@ ' - 'OK :
 
-README.md : 
+README.md :
 	#TRUNCATE-ZERO-CREATE $@ 
-	$(ECHO) $@ ' - 'OK :
+	@$(ECHO) Done and dustes!  | tee -a $(OUTPUT_FILE)
+	#$(ECHO) $@ ' - 'OK :
 
 #.DEFAULT_GOAL := all
 
-$(CHAPTERS) $(APENDIX) : 
+$(CHAPTERS) $(APPENDIX): 
 	$(MAKE)	--directory=$@ $(TARGET)
 	$(if $(TARGET), $(MAKE) $(TARGET))
 
