@@ -28,8 +28,8 @@ $(CHAPTERS) $(APPENDIX):
 	@$(ECHO) OUTPUT_DIR = ../$(OUTPUT_DIR)                    >> $@/Makefile
 	@[ -f $@.mk ] && $(ECHO) $@/Makefile : updating customized $@.mk targets
 	@[ -f $@.mk ] && $(CAT) $@.mk                             >> $@/Makefile
-	@[ -f $@.mk ] || @$(CAT) $(DEFAULT_HELP_TARGET)           >> $@/Makefile
 	@[ -f $@.mk ] && $(ECHO) $@/Makefile : adding default help targets
+	@[ -f $@.mk ] && $(CAT) $(DEFAULT_HELP_TARGET)           >> $@/Makefile
 
 .PHONY : mk-clean
 mk-clean :
