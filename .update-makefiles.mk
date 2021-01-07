@@ -7,15 +7,19 @@ include $(REL_PROJECT_DIR)/$(COMMONMK)
 
 .PHONY: all
 all : 
+	@$(ECHO) $@: STARTED 
+	@$(ECHO) $@: OK
 
 .PHONY: mk-update $(CHAPTERS) $(APPENDIX)
 mk-update : $(CHAPTERS) $(APPENDIX) 
+	@$(ECHO) $@: STARTED 
 	@$(ECHO) 'Makefiles sucsessfuly updated from custom *.mk files'
 	@$(LS) */Makefile
 	@$(LS) ./*.mk
-	@$(ECHO)
+	@$(ECHO) $@: OK
 
 $(CHAPTERS) $(APPENDIX):
+	@$(ECHO) $@: STARTED 
 	@-[ -f $@/Makefile ] || $(MOVE--VERBOSE--BACKUP-N) $@.mk $@.mk.ORI
 	@[ -f $@/Makefile ] || $(ECHO) $@.mk : adding phony targets
 	@[ -f $@/Makefile ] || $(CAT) $(PHONY_TARGETS)                  >> $@.mk
@@ -40,17 +44,18 @@ $(CHAPTERS) $(APPENDIX):
 	@$(ECHO) OUTPUT_DIR = ../$(OUTPUT_DIR)                    >> $@/Makefile
 	@[ -f $@.mk ] && $(ECHO) $@/Makefile : updating customized $@.mk targets
 	@[ -f $@.mk ] && $(CAT) $@.mk                             >> $@/Makefile
+	@$(ECHO) $@: OK
 
 .PHONY : mk-clean
 mk-clean :
-	@$(ECHO) CLEAN 
+	@$(ECHO) $@: STARTED 
 	@$(ECHO) going to delete the following folder $(CHAPTERS) $(APPENDIX)
 	@$(ECHO) $(LS) $(CHAPTERS) $(APPENDIX)
-	@$(RM-RFI) $(CHAPTERS) $(APPENDIX)
+	@-$(RM-RFI) $(CHAPTERS) $(APPENDIX)
 	@$(ECHO) $(LS) *.mk
 	@$(ECHO) 'going to delete the following *.mk' files
-	@$(RM-RFI) ./*.mk
-
+	@-$(RM-RFI) ./*.mk
+	@$(ECHO) $@: OK
 ### Makefile.default
 .PHONY : help
 help : 
