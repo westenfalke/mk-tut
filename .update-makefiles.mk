@@ -6,7 +6,7 @@ COMMONMK = .common.mk
 include $(REL_PROJECT_DIR)/$(COMMONMK)
 
 .PHONY: all
-all : 
+all : help
 	@$(ECHO) $@: STARTED 
 	@$(ECHO) $@: OK
 
@@ -69,4 +69,4 @@ help :
 	$(ECHO) CHAPTER = $(CHAPTER)
 	$(ECHO) CHAPTERS = $(CHAPTERS)
 
-.DEFAULT_GOAL := update 
+.DEFAULT_GOAL := help 
