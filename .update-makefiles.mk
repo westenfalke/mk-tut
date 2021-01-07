@@ -26,9 +26,11 @@ $(CHAPTERS) $(APPENDIX):
 	@[ -f $@/Makefile ] || $(ECHO) $@ : creating folder for custom data 
 	@[ -f $@/Makefile ] || $(MKDIR-P) -v                               $@
 	@[ -f $@/Makefile ] || $(ECHO) $@ : adding default showcase files
-	@[ -f $@/Makefile ] || $(TOUCH) $@/01-showcase.md 
-	@[ -f $@/Makefile ] || $(TOUCH) $@/02-showcase.bash
-	@[ -f $@/Makefile ] || $(TOUCH) $@/03-showcase.md 
+	@[ -f $@/Makefile ] || $(ECHO) '## INTRO - $@'> $@/$(FILE_SHOWCASE_PART_01) 
+	@[ -f $@/Makefile ] || $(ECHO) '$(HASH-BANG)' >> $@/$(FILE_SHOWCASE_PART_02)
+	@[ -f $@/Makefile ] || $(ECHO) '$(ECHO) ACTION - HALLO WELT! $(DATE-ISO-SEC)' >> $@/$(FILE_SHOWCASE_PART_02)
+	@[ -f $@/Makefile ] || $(ECHO) '## OUTRO - $@' >> $@/$(FILE_SHOWCASE_PART_03)
+	@[ -f $@/Makefile ] || $(ECHO) 'description' >> $@/$(FILE_SHOWCASE_PART_03)
 	@$(TRUNCATE-ZERO-CREATE)                                     $@/Makefile
 	@$(ECHO) $@/Makefile : updateing meta data and heeader information
 	@$(ECHO) # Makefile automatic HEADER                      >> $@/Makefile
