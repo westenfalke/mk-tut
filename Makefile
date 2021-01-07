@@ -1,4 +1,4 @@
-# Creating A Hugo Theme From Scratch
+# mk-tut is a Makefile based framework to create better README.md files and instructional guide books for CLI maintained systems.
 CHAPTER =
 REL_PROJECT_DIR = .
 OUTPUT_DIR = ./out
