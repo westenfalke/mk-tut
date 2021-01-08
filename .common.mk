@@ -13,9 +13,9 @@ RECIPE_SHOWCASE_CLEAN   = $(RM-RFV)                                             
 OUTPUT_DIR              = out
 OUTPUT_FILE             = README.md
 PHONY_TARGETS           = .phony-targets.mk
-INSTALL_MAKEFILE        = .update-makefiles.mk
-UPDATE_MAKEFILE         = .update-makefiles.mk
-UNINSTALL_MAKEFILE      = .update-makefiles.mk
+INSTALL_MAKEFILE        = .mk-install.mk
+UPDATE_MAKEFILE         = .mk-update.mk
+UNINSTALL_MAKEFILE      = .mk-uninstall.mk
 HELP_TARGET             = .help-target.mk
 DEFAULT_TARGET          = .default-target.mk
 # CMD
