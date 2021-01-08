@@ -33,7 +33,7 @@ mk-update :
 #.PHONY : install
 mk-install :
 	@$(ECHO) $@: START
-	@$(MAKE)  $@ --makefile=$(UPDATE_MAKEFILE)
+	@$(MAKE)  $@ --makefile=$(INSTALL_MAKEFILE)
 	@$(ECHO) $@: OK
 
 # Delete the <CHAPTER|APPENDIX>.mk files wit customised settings 
@@ -43,7 +43,7 @@ mk-install :
 mk-uninstall : 
 	@$(ECHO) $@: START
 	@-$(MAKE) clean 
-	@$(MAKE) $@ --makefile=$(UPDATE_MAKEFILE)
+	@$(MAKE) $@ --makefile=$(UNINSTALL_MAKEFILE)
 	@$(ECHO) $@: OK
 
 # Delete the binary files generated from sources
