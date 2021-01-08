@@ -7,8 +7,9 @@ include $(REL_PROJECT_DIR)/$(COMMONMK)
 
 .PHONY: all
 all : help
-	@$(ECHO) $@: STARTED 
-	@$(ECHO) $@: OK
+
+mk-install  :: $(CHAPTERS) $(APPENDIX)
+	@$(TOUCH) $@
 
 .PHONY: mk-update $(CHAPTERS) $(APPENDIX)
 mk-update : $(CHAPTERS) $(APPENDIX) 
@@ -46,8 +47,8 @@ $(CHAPTERS) $(APPENDIX):
 	@[ -f $@.mk ] && $(CAT) $@.mk                             >> $@/Makefile
 	@$(ECHO) $@: OK
 
-.PHONY : mk-clean
-mk-clean :
+.PHONY : mk-uninstall
+mk-uninstall :
 	@$(ECHO) $@: STARTED 
 	@$(ECHO) going to delete the following folder $(CHAPTERS) $(APPENDIX)
 	@$(ECHO) $(LS) $(CHAPTERS) $(APPENDIX)
@@ -55,8 +56,11 @@ mk-clean :
 	@$(ECHO) $(LS) *.mk
 	@$(ECHO) 'going to delete the following *.mk' files
 	@-$(RM-RFI) ./*.mk
+	@$(ECHO) 'delete mk-install'
+	@-$(RM-RFV) mk-install 
 	@$(ECHO) $@: OK
-### Makefile.default
+
+### .help-target.mk
 .PHONY : help
 help : 
 	$(ECHO) $@ | $(TR) '[:lower:]' '[:upper:]'
