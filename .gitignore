@@ -1,6 +1,6 @@
 .gitignore
-**/Makefile
-**/makefile
+*/**/Makefile
+*/**/makefile
 **/*.mk
 **/*.ORI
 **/*.~?~
